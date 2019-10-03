@@ -1,0 +1,12 @@
+{
+  "domain": "awb",
+  "name": "awb waste collection schedule",
+  "documentation": "https://github.com/jensweimann/awb",
+  "requirements": [],
+  "homeassistant": "0.98.0",
+  "dependencies": [
+  ],
+  "codeowners": [
+    "@jensweimann"
+  ]
+}
