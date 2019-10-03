@@ -12,12 +12,10 @@ Add this repo in the settings as integration then install and restart home assis
 https://community.home-assistant.io/t/awb-waste-collection-schedule/140486
 
 ## Find street number and street code:
-https://www.offenedaten-koeln.de/dataset/strassenverzeichnis
-
-Strassenverzeichnis Standard 2015 -> Vorschau
-Example:
-Domkloster 4, 50667 Köln
-would be:
+https://www.offenedaten-koeln.de/dataset/strassenverzeichnis  
+Strassenverzeichnis Standard 2015 -> Vorschau  
+  
+Domkloster 4, 50667 Köln:
  ```
 street_code: 745
 street_number: 4
