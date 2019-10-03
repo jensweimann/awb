@@ -3,7 +3,10 @@
 # Home Assistant sensor for german AWB waste collection schedule
 
 ## Installation:
+### Manual
 Copy all files from custom_components/awb/ to custom_components/awb/ inside your config Home Assistant directory.
+### Hacs
+Add this repo in the settings as integration then install and restart home assistant
 
 ## Find street number and street code:
 https://www.offenedaten-koeln.de/dataset/strassenverzeichnis
