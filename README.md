@@ -8,6 +8,9 @@ Copy all files from custom_components/awb/ to custom_components/awb/ inside your
 ### Hacs
 Add this repo in the settings as integration then install and restart home assistant
 
+## Discussion
+https://community.home-assistant.io/t/awb-waste-collection-schedule/140486
+
 ## Find street number and street code:
 https://www.offenedaten-koeln.de/dataset/strassenverzeichnis
 
