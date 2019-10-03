@@ -1,34 +1,38 @@
 # Home Assistant sensor for german AWB waste collection schedule
 
-Installation:
-
+## Installation:
 Copy all files from custom_components/awb/ to custom_components/awb/ inside your config Home Assistant directory.
 
-
-# Find street number and street code:
+## Find street number and street code:
 https://www.offenedaten-koeln.de/dataset/strassenverzeichnis
 
 Strassenverzeichnis Standard 2015 -> Vorschau
 Example:
-  Domkloster 4, 50667 Köln
-  would be:
-    street_code: 745
-    street_number: 4
+Domkloster 4, 50667 Köln
+would be:
+ ```
+street_code: 745
+street_number: 4
+```
 
-# sensor
+## sensor
+```
 - platform: awb
   name: awb
   scan_interval: 3600
   street_code: 745
   street_number: 4
+```
 
-
-# customize
+## customize
+```
 sensor.awb:
   friendly_name: Heute Mülltonne rausstellen
   icon: mdi:delete
-  
-# automation
+```
+
+## automation
+```
 - alias: AWB Notification
   trigger:
     - platform: time
@@ -50,3 +54,4 @@ sensor.awb:
     - service: notify.my_telegram
       data_template:
         message: "{{ states.sensor.awb.name }}: {{  states.sensor.awb.state }}"
+```
