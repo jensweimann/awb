@@ -14,6 +14,10 @@ https://community.home-assistant.io/t/awb-waste-collection-schedule/140486
 ## Functionality
 The sensor shows the bin which will be collected the next day. The complete collection schedule is available as attributes of the sensor 
 
+![alt text](https://github.com/jensweimann/awb/blob/master/preview1.png "glance card")
+
+![alt text](https://github.com/jensweimann/awb/blob/master/preview2.png "glance card details")
+
 ## Configuration
 
 ### Find street number and street code:
