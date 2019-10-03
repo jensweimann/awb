@@ -1,16 +1,28 @@
-## Find street number and street code:
-https://www.offenedaten-koeln.de/dataset/strassenverzeichnis
+# Home Assistant sensor for german AWB waste collection schedule
 
-Strassenverzeichnis Standard 2015 -> Vorschau
-Example:
-Domkloster 4, 50667 Köln
-would be:
+## Discussion
+https://community.home-assistant.io/t/awb-waste-collection-schedule/140486
+
+## Functionality
+The sensor shows the bin which will be collected the next day. The complete collection schedule is available as attributes of the sensor 
+
+![alt text](https://github.com/jensweimann/awb/blob/master/preview1.png "glance card")
+
+![alt text](https://github.com/jensweimann/awb/blob/master/preview2.png "glance card details")
+
+## Configuration
+
+### Find street number and street code:
+https://www.offenedaten-koeln.de/dataset/strassenverzeichnis  
+Strassenverzeichnis Standard 2015 -> Vorschau  
+  
+Domkloster 4, 50667 Köln:
  ```
 street_code: 745
 street_number: 4
 ```
 
-## sensor
+### sensor
 ```
 - platform: awb
   name: awb
@@ -19,14 +31,14 @@ street_number: 4
   street_number: 4
 ```
 
-## customize
+### customize
 ```
 sensor.awb:
   friendly_name: Heute Mülltonne rausstellen
   icon: mdi:delete
 ```
 
-## automation
+### automation
 ```
 - alias: AWB Notification
   trigger:
