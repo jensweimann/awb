@@ -1,0 +1,5 @@
+{
+  "name": "AWB - Home Assistant sensor for german AWB waste collection schedule",
+  "country": "DE",
+  "homeassistant": "0.98.0"
+}
