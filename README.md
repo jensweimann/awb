@@ -1,12 +1,13 @@
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 
 # Home Assistant sensor for german AWB waste collection schedule
 
 ## Installation:
+### Hacs
+Search for awb in hacs integrations, install and restart home assistant
+
 ### Manual
 Copy all files from custom_components/awb/ to custom_components/awb/ inside your config Home Assistant directory.
-### Hacs
-Add this repo in the settings as integration then install and restart home assistant
 
 ## Discussion
 https://community.home-assistant.io/t/awb-waste-collection-schedule/140486
