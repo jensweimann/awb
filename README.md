@@ -39,7 +39,7 @@ street_number: 4
   scan_interval: 3600
   street_code: 745
   street_number: 4
-  date: tomorrow
+  day: tomorrow
 ```
 
 ### customize
