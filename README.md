@@ -13,7 +13,8 @@ Copy all files from custom_components/awb/ to custom_components/awb/ inside your
 https://community.home-assistant.io/t/awb-waste-collection-schedule/140486
 
 ## Functionality
-The sensor shows the bin which will be collected the next day. The complete collection schedule is available as attributes of the sensor 
+The sensor shows the bin which will be collected the next day. The complete collection schedule is available as attributes of the sensor.
+Optionally, the collection of the current day can be selected by setting `day: today`
 
 ![alt text](https://github.com/jensweimann/awb/blob/master/preview1.png "glance card")
 
@@ -38,6 +39,7 @@ street_number: 4
   scan_interval: 3600
   street_code: 745
   street_number: 4
+  date: tomorrow
 ```
 
 ### customize

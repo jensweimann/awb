@@ -34,11 +34,13 @@ NAMES_DICT = {
 
 CONF_STREET_CODE = 'street_code'
 CONF_STREET_NUMBER = 'street_number'
+CONF_DAY = 'day'
 
 _QUERY_SCHEME = vol.Schema({
     vol.Required(CONF_NAME): cv.string,
     vol.Required(CONF_STREET_CODE): cv.string,
     vol.Required(CONF_STREET_NUMBER): cv.string,
+    vol.Optional(CONF_DAY): cv.string,
     vol.Optional(CONF_VALUE_TEMPLATE): cv.template
 })
 
@@ -53,16 +55,17 @@ def setup_platform(
     if value_template is not None:
         value_template.hass = hass
 
-    add_devices([AwbSensor(config.get(CONF_NAME), config.get(CONF_STREET_CODE), config.get(CONF_STREET_NUMBER), value_template)])
+    add_devices([AwbSensor(config.get(CONF_NAME), config.get(CONF_STREET_CODE), config.get(CONF_STREET_NUMBER), config.get(CONF_DAY), value_template)])
 
 class AwbSensor(Entity):
 
     """Representation of a Sensor."""
-    def __init__(self, name, streetCode, streetNumber, value_template):
+    def __init__(self, name, streetCode, streetNumber, day, value_template):
         """Initialize the sensor."""
         self._name = name
         self._streetCode = streetCode 
         self._streetNumber = streetNumber
+        self._day = day
         self._value_template = value_template
         self._state = STATE_UNKNOWN
         self._attributes = None
@@ -93,17 +96,17 @@ class AwbSensor(Entity):
         """Fetch new state data for the sensor.
         This is the only method that should fetch new data for Home Assistant.
         """
-        tommorow = datetime.now() + timedelta(days=1)
-        tommorowInDelta = tommorow + timedelta(days=30)
+        day = datetime.now() + timedelta(days=(0 if self._day == 'today' else 1))
+        dayInDelta = day + timedelta(days=30)
 
         try:
           with urllib.request.urlopen((AWB_HOST + AWB_PARAMS).format(
               self._streetCode,
               self._streetNumber,
-              tommorow.year,
-              tommorowInDelta.year,
-              tommorow.month,
-              tommorowInDelta.month
+              day.year,
+              dayInDelta.year,
+              day.month,
+              dayInDelta.month
               )) as url:
               value_json = json.loads(url.read().decode())
         except:
@@ -114,14 +117,14 @@ class AwbSensor(Entity):
         attributes = {}
         for trashdate in trashdates:
             dayDate = datetime.strptime(str(trashdate['year']) + '-' + str(trashdate['month']) + '-' + str(trashdate['day']), DATE_FORMAT)
-            typ = NAMES_DICT.get(trashdate['typ']);
+            typ = NAMES_DICT.get(trashdate['typ'])
             existingTyp = attributes.get(dayDate.strftime(DATE_FORMAT))
             if existingTyp is not None:
                 typ = typ + ', ' + existingTyp
             attributes.update({dayDate.strftime(DATE_FORMAT): typ})
         
         attributes.update({'Zuletzt aktualisiert': datetime.now().strftime(DATE_FORMAT + ' %H:%M:%S')})
-        data = attributes.get(tommorow.strftime(DATE_FORMAT), "Keine");
+        data = attributes.get(day.strftime(DATE_FORMAT), "Keine")
 
         if self._value_template is not None:
             self._state = self._value_template.async_render_with_possible_json_value(
